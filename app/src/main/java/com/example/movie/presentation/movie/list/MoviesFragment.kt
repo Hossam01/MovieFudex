@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie.R
+import com.example.movie.base.BaseFragment
 import com.google.android.material.transition.platform.MaterialElevationScale
 import com.google.android.material.transition.platform.MaterialFadeThrough
 import com.example.movie.databinding.FragmentMoviesBinding
@@ -30,10 +31,9 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MoviesFragment : Fragment() {
+class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding::inflate) {
 
     private val viewModel: MoviesViewModel by viewModels()
-    private lateinit var binding: FragmentMoviesBinding
     private lateinit var movieListAdapter: MovieListAdapter
     private lateinit var searchView: SearchView
     private lateinit var menua: Menu
@@ -45,14 +45,6 @@ class MoviesFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMoviesBinding.inflate(layoutInflater)
-        return binding.root
-    }
 
     override fun onViewCreated(
         view: View,

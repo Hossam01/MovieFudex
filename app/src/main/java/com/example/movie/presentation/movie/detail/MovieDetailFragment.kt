@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.movie.R
+import com.example.movie.base.BaseFragment
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.example.movie.databinding.FragmentMovieDetailBinding
 import com.example.movie.domain.model.MovieDetail
@@ -26,10 +27,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MovieDetailFragment : Fragment() {
+class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(FragmentMovieDetailBinding::inflate) {
 
     private val viewModel: MovieDetailsViewModel by viewModels()
-    private lateinit var binding: FragmentMovieDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,15 +40,7 @@ class MovieDetailFragment : Fragment() {
             scrimColor = Color.TRANSPARENT
         }
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMovieDetailBinding.inflate(layoutInflater)
-        return binding.root
-    }
+    
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
